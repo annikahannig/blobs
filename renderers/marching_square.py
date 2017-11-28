@@ -41,7 +41,7 @@ def _box_apply_threshold(box, th):
 
 
 
-def _shade_box_lines(box):
+def shade_box_lines(box):
     if box == (False, False, False, False):
         return "_" # Empty
     if box == (True, True, True, True):
@@ -66,7 +66,32 @@ def _shade_box_lines(box):
     return "_"
 
 
-def render(dfield):
+def shade_box_dots(box):
+    if box == (False, False, False, False):
+        return " "
+    if box == (True, True, True, True):
+        return "█"
+    if box == (True, False, True, False):
+        return "▏"
+    if box == (False, True, False, True):
+        return "▕"
+    if box == (False, False, True, True):
+        return "▃"
+    if box == (True, True, False, False):
+        return "▀"
+    if box == (False, True, True, True):
+        return "▟"
+    if box == (True, True, True, False):
+        return "▛"
+    if box == (True, True, False, True):
+        return "▜"
+    if box == (True, False, True, True):
+        return "▙"
+
+    return " "
+
+
+def render(dfield, shader):
     vres = len(dfield)
     hres = len(dfield[0])
 
@@ -74,7 +99,7 @@ def render(dfield):
         for x in range(hres - 1):
             samples = _dfield_sample_box(dfield, x, y)
             box = _box_apply_threshold(samples, 0.05)
-            c = _shade_box_lines(box)
+            c = shader(box)
             print(c, end="")
         print()
 
