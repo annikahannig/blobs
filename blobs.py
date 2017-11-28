@@ -5,7 +5,7 @@ from renderers import marching_square
 
 
 def dfield_balls(hres, vres):
-    balls = [(23, 10), (10, 5), (8, 18), (16, 10)]
+    balls = [(23, 10), (10, 5), (60, 18), (16, 10)]
 
     dfield = [[0.0 for _ in range(hres)] for _ in range(vres)]
     for y in range(vres):
@@ -22,6 +22,12 @@ def dfield_balls(hres, vres):
     return dfield
 
 
+
+if __name__ == "__main__":
+
+    df = dfield_balls(75, 40)
+
+    marching_square.render(df, marching_square.shade_box_dots)
 
 
 
