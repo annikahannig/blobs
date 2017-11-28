@@ -98,7 +98,7 @@ def render(dfield, shader):
     for y in range(vres - 1):
         for x in range(hres - 1):
             samples = _dfield_sample_box(dfield, x, y)
-            box = _box_apply_threshold(samples, 0.05)
+            box = _box_apply_threshold(samples, 0.03)
             c = shader(box)
             print(c, end="")
         print()
